@@ -70,11 +70,5 @@
     "name": "Kate",
     "email": "test@gmail.com",
     "phone": "+38(096)458-15-43"
-  },
-  {
-    "id": "5a25ea36-fcf4-4c1d-b924-107aacab3732",
-    "name": "Cat",
-    "email": "cat@gmail.com",
-    "phone": "111222333"
   }
 ]
