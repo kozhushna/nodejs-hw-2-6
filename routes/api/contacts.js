@@ -1,12 +1,12 @@
 const express = require('express');
 const ctrl = require('../../controllers/contactsController');
 const { validateBody } = require('../../middlewares');
-const schemas = require('../../schemas/contactsSchema');
+const { schemas } = require('../../models/contact');
 const router = express.Router();
 
 router.get('/', ctrl.listContacts);
 
-// router.get('/:contactId', ctrl.getContactById);
+router.get('/:contactId', ctrl.getContactById);
 
 router.post('/', validateBody(schemas.addSchema), ctrl.addContact);
 
