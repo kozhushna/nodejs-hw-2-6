@@ -6,14 +6,14 @@ const { handleMongooseError } = require('../helpers');
 const emailRegex =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
-const passwordRegex = /^[a-z0-9]{8,18}$/;
+// const passwordRegex = /^[a-z0-9]{8,18}$/;
 
 const userShema = new Schema(
   {
     password: {
       type: String,
       required: [true, 'Set password for user'],
-      match: passwordRegex,
+      // match: passwordRegex,
     },
     email: {
       type: String,
@@ -35,12 +35,12 @@ userShema.post('save', handleMongooseError);
 
 const registerSchema = Joi.object({
   email: Joi.string().pattern(emailRegex).required(),
-  password: Joi.string().pattern(passwordRegex).required(),
+  password: Joi.string().min(6).required(),
 });
 
 const loginSchema = Joi.object({
   email: Joi.string().pattern(emailRegex).required(),
-  password: Joi.string().pattern(passwordRegex).required(),
+  password: Joi.string().min(6).required(),
 });
 
 const schemas = {
