@@ -8,6 +8,8 @@ const emailRegex =
 
 // const passwordRegex = /^[a-z0-9]{8,18}$/;
 
+const subscriptionList = ['starter', 'pro', 'business'];
+
 const userShema = new Schema(
   {
     password: {
@@ -23,7 +25,7 @@ const userShema = new Schema(
     },
     subscription: {
       type: String,
-      enum: ['starter', 'pro', 'business'],
+      enum: subscriptionList,
       default: 'starter',
     },
     token: String,
@@ -43,9 +45,16 @@ const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const updateSubscriptionSchema = Joi.object({
+  subscription: Joi.string()
+    .valid(...subscriptionList)
+    .required(),
+});
+
 const schemas = {
   registerSchema,
   loginSchema,
+  updateSubscriptionSchema,
 };
 
 const User = model('user', userShema);
