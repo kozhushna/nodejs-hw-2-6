@@ -25,7 +25,7 @@ const contactSchema = new Schema(
       required: true,
     },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 );
 
 contactSchema.post('save', handleMongooseError);
