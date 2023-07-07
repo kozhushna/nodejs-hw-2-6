@@ -6,8 +6,6 @@ const { handleMongooseError } = require('../helpers');
 const emailRegex =
   /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
-// const passwordRegex = /^[a-z0-9]{8,18}$/;
-
 const subscriptionList = ['starter', 'pro', 'business'];
 
 const userShema = new Schema(
@@ -15,7 +13,6 @@ const userShema = new Schema(
     password: {
       type: String,
       required: [true, 'Set password for user'],
-      // match: passwordRegex,
     },
     email: {
       type: String,
