@@ -3,12 +3,24 @@ const logger = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 
+const multer = require('multer');
+const path = require('path');
+
 const authRouter = require('./routes/api/auth');
 const contactsRouter = require('./routes/api/contacts');
 
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
+
+const tempDir = path.join(__dirname, 'temp');
+const multerConfig = multer.diskStorage({
+  destination: tempDir,
+});
+
+const upload = multer({
+  storage: multerConfig,
+});
 
 app.use(logger(formatsLogger));
 app.use(cors());
